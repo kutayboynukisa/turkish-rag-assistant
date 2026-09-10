@@ -17,21 +17,26 @@ motivation and differentiator behind the project.
 Early development. The data ingestion layer is being implemented first; the
 retrieval and generation stages are planned (see Roadmap).
 
-## Data layer
+## Modules
 
 The ingestion pipeline turns raw text into clean, searchable chunks:
 
-- **stats** — compute basic text statistics (word, character, line counts)
-- **cleaner** — normalize whitespace, including Unicode whitespace commonly
+- **stats** - compute basic text statistics (word, character, line counts)
+- **cleaner** - normalize whitespace, including Unicode whitespace commonly
   found in text copied from PDFs or web pages
-- **chunker** — split cleaned text into fixed-size, overlapping chunks
+- **chunker** - split cleaned text into fixed-size, overlapping chunks
+- **normalizer** - apply Turkish casing rules so search matches correctly
+- **embedder** - encode text into dense vectors with a multilingual model
+- **vector store** - index chunks and retrieve them by semantic similarity
 
 ## Roadmap
 
 - [x] Data layer: text stats, cleaning, chunking
-- [ ] Turkish-aware normalization and tokenization
-- [ ] Embeddings and vector store
-- [ ] Retrieval
+- [x] Turkish-aware normalization (İ -> i, I -> ı casing rules)
+- [ ] Turkish-aware tokenization
+- [x] Embeddings and vector store
+- [x] Retrieval (semantic search over indexed chunks)
+- [ ] Persistent storage for the vector store
 - [ ] LLM answer generation
 - [ ] Retrieval and answer evaluation
 
